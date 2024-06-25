@@ -1,4 +1,4 @@
-# Nome da Sua Biblioteca
+# Three.js Map
 
 A Biblioteca Three.js Map é uma ferramenta de mapas interativos projetada para facilitar a criação de mapas 3D envolventes. Com suporte para interatividade do usuário e dependência do Three.js, esta biblioteca permite a incorporação de mapas detalhados em projetos de forma simples e eficiente.
 
