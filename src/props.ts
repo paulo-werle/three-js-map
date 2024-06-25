@@ -2,13 +2,13 @@ import * as THREE from 'three';
 
 import { MapLoaderProps, ObjectLoaderProps } from './loader/props';
 import { GridHelperProps, HelperProps } from './helper/props';
+import { RaycasterProps } from './raycaster/props';
 import { ControlProps } from './control/props';
 import { RenderProps } from './render/props';
 import { CameraProps } from './camera/props';
 import { CanvaProps } from "./canva/props";
 import { LightProps } from './light/props';
 import { SceneProps } from './scene/props';
-import { RaycasterProps } from './raycaster/props';
 
 export interface Coordinates {
   x: number;
