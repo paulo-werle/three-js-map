@@ -26,17 +26,23 @@ export interface Object {
   hoverDistance?: RaycasterProps['distance']
   clickDistance?: RaycasterProps['distance']
   touchDistance?: RaycasterProps['distance']
+  hoverData?: any
+  clickData?: any
+  touchData?: any
   onHoverCallback?: (
+    data: any,
     model: THREE.Object3D,
     intersection: THREE.Intersection,
     event: MouseEvent | TouchEvent
   ) => void;
   onClickCallback?: (
+    data: any,
     model: THREE.Object3D,
     intersection: THREE.Intersection,
     event: MouseEvent | TouchEvent
   ) => void;
   onTouchCallback?: (
+    data: any,
     model: THREE.Object3D,
     intersection: THREE.Intersection,
     event: MouseEvent | TouchEvent

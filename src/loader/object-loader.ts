@@ -6,7 +6,7 @@ import { ObjectLoaderProps } from "./props";
 // Loader GLTF
 const loader = new GLTFLoader();
 
-export const ObjectLoader = ({
+export const ObjectLoader = async ({
   path,
   scene,
   scale,

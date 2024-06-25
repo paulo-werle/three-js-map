@@ -11,8 +11,8 @@ import { Canva } from "./canva";
 import { Scene } from "./scene";
 import { Light } from "./light";
 
-export const ThreeJs3DMap = async ({
-  elementID = 'three-js-3d-map',
+export const ThreeJs3DMap = ({
+  elementID = '#three-js-3d-map',
   development = false,
   objects = [],
   onLoadComplete,
@@ -132,6 +132,9 @@ export const ThreeJs3DMap = async ({
       hoverDistance,
       clickDistance,
       touchDistance,
+      hoverData = {},
+      clickData = {},
+      touchData = {},
       onLoadCallback,
       onProgressCallback,
       onErrorCallback,
@@ -160,7 +163,7 @@ export const ThreeJs3DMap = async ({
               event: MouseEvent | TouchEvent
             ) => {
               onHoverCallback && (
-                onHoverCallback(model, intersection, event)
+                onHoverCallback(hoverData, model, intersection, event)
               )
             }
           });
@@ -173,7 +176,7 @@ export const ThreeJs3DMap = async ({
               event: MouseEvent | TouchEvent
             ) => {
               onClickCallback && (
-                onClickCallback(model, intersection, event)
+                onClickCallback(clickData, model, intersection, event)
               )
             }
           });
@@ -186,22 +189,16 @@ export const ThreeJs3DMap = async ({
               event: MouseEvent | TouchEvent
             ) => {
               onTouchCallback && (
-                onTouchCallback(model, intersection, event)
+                onTouchCallback(touchData, model, intersection, event)
               )
             }
           });
         }
       )
+
+      loadPromises.push(objectLoader)
     }
   )
-
-  // Aguarda todos os objetos serem carregados
-  await Promise.all(loadPromises);
-
-  // Callback de carregamento
-  if (onLoadComplete) {
-    onLoadComplete();
-  }
 
   // Função de render
   const render = () => {
@@ -211,7 +208,16 @@ export const ThreeJs3DMap = async ({
   }
 
   // Executando renderização
-  render()
+  // Aguarda todos os objetos serem carregados
+  Promise.all(loadPromises).then(
+    () => {
+      if (onLoadComplete) {
+        onLoadComplete();
+      }
+
+      render()
+    }
+  )
 
   // Retorno das definições
   return {
